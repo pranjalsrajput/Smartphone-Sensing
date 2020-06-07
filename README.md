@@ -78,3 +78,5 @@ The cell with the highest density is the location of the user.
 Following a unique path results in a convergence of the particle filter as the particles end up forming a cloud, as
 long as only proper 90 ◦ turns are taken while walking. After convergence, we went to every cell and the application was
 able to detect the correct cell location.
+
+More information can be found in report 3.
