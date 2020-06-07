@@ -15,11 +15,13 @@ When the application is running, the accelerometer sensor values are constantly 
 Wi-Fi scan is only performed when a movement is detected, i.e. when the user is recognized as walking.
 
 
-<img src="images/KNN.png" alt="drawing" width="600"/>
+<img src="images/KNN.png" alt="drawing" width="400"/>
 
 More information is provided in report 1.
 
 ### Using Bayesian Filters
+
+<img src="images/Bayesian.png" alt="drawing" width="600"/>
 
 We developed an android application that provides the location of the user within 16 cells on the fifth floor of the EWI building
 
@@ -52,4 +54,27 @@ implemented a step and direction.
 
 *Probability Distribution for cells X i , X i+1 , X i+2*
 
+The app didn't require the Wifi signal connectivity anymore. As the user walks in the map, the app automatically converges in the cell the user is currently present. The app is worked pretty accurately, condition being the step-size taken by user is normal, and proper turns are taken (change of direction).
 
+### Using Particle Filters
+
+<img src="images/Particle.png" alt="drawing" width="600"/>
+
+1) `Particle movement`: When a step is detected, every particle will make very small movements of `p` pixels for n
+times, where p is a small constant and `n = stepsize/p`. We have implemented it in such a way after realizing that moving
+the particles directly according to the step size will result in grid-like distribution of particles, which is undesirable. We used p= 2.
+
+2) `Movement constraints`: A particle violates the movement constraint if it fulfills any of the following conditions: (a)
+the pixel boundary of the particle intersects with the boundary of any wall; or (b) the pixel is located outside of the map.
+
+3) `Resampling`: When the particle violates the constraints, it is immediately resampled as it gets placed on top of a
+random surviving particle.
+
+4) `Determining location`: The location of the user is determined by calculating the particle density of every single cell.
+The cell with the highest density is the location of the user.
+
+#### Results
+
+Following a unique path results in a convergence of the particle filter as the particles end up forming a cloud, as
+long as only proper 90 ◦ turns are taken while walking. After convergence, we went to every cell and the application was
+able to detect the correct cell location.
