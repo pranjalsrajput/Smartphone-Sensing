@@ -54,7 +54,7 @@ implemented a step and direction.
 
 *Probability Distribution for cells X i , X i+1 , X i+2*
 
-The app didn't require the Wifi signal connectivity anymore. As the user walks in the map, the app automatically converges in the cell the user is currently present. The app is worked pretty accurately, condition being the step-size taken by user is normal, and proper turns are taken (change of direction).
+The app didn't require the Wifi signal connectivity anymore. As the user walks in the map, the app automatically converges in the cell the user is currently present. The app worked pretty accurately, condition being the step-size taken by user is normal, and proper turns are taken (change of direction).
 
 ### Using Particle Filters
 
